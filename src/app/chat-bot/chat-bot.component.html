@@ -1,0 +1,32 @@
+<div class="app-title">
+  <h1>👋 there!</h1>
+  <p>Explore AI-powered text generation with me..</p>
+</div>
+
+<div class="search-container">
+  <input
+    type="text"
+    #searchText
+    id="search-bar"
+    placeholder="Enter your prompt..."
+    aria-label="Search prompt"
+    (keydown.enter)="searchResult(searchText.value)"
+  />
+  <button id="search-button" (click)="searchResult(searchText.value)">
+    Search
+  </button>
+</div>
+
+<ng-container *ngIf="searchResults()">
+  <div class="response-container" id="response-container">
+    <ng-container *ngIf="loadingStarted; content">
+      Loading.....
+      Loading.....
+    </ng-container>
+
+    <ng-container #content>
+      <p [innerHtml]="searchResults() | markdown">
+      </p>
+    </ng-container>
+   </div>
+</ng-container>
